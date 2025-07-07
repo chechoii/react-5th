@@ -7,7 +7,7 @@ import ReactDOM from "https://esm.sh/react-dom/client";
 
 interface Props {
   name:string;
-  status?:'offline' | 'online' | 'disturb' | 'await'
+  status?:'offline' | 'online' | 'disturb' | 'await';
   size?:number;
 }
 

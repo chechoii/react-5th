@@ -24,6 +24,7 @@ const container = document.getElementById('app');
 if(container){
   const reactDomRoot = ReactDOM.createRoot(container);
   reactDomRoot.render(h(AvatarPage));
+  // reactDomRoot.render(h(PlanetPage));
 }
 
 
