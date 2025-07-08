@@ -11,8 +11,6 @@ function Learn():JSX.Element{
     )
 }
 
-
-
 export default Learn;
 
 
@@ -28,7 +26,7 @@ function Headline():JSX.Element{
     return(
         <h1>
             <abbr title={abbr.html}>HTML</abbr> vs
-            <abbr title={abbr.jsx.abbr}>{abbr.jsx.text}</abbr> 마크업
+            <abbr title={abbr.jsx.abbr}> {abbr.jsx.text}</abbr> 마크업
         </h1>
     )
 }

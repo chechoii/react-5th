@@ -9,16 +9,19 @@ interface Props {
 
 function RenderList({reactLibrary, items}:Props) {
 
+    {/* for ...of를 사용한 리스트 렌더링 */}
     const demoList = [];
     for(const a of items){
         demoList.push(<li key={a.id}>{a.message}</li>)
         /* 배열에 li태그의 값을 넣는다. */
     }
 
+    {/* 배열의 메서드를 사용한 리스트 렌더링 */}
     const _demoList = items.map(({id, message}:StatusMessageWithId) => (
         <li key={id}>{message}</li>
     ))
 
+    {/* 함수를 사용한 리스트 렌더링 */}
     const renderDemoList = () => items.map(({id, message}) => <li key={id}>{message}</li>)
 
 /*     const _renderDemoList = () => {

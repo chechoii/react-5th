@@ -8,12 +8,12 @@ export const statusMessage:StatusMessage[] = [
     '❌로딩 실패',
 ]
 
-export const imageType:imageType = 'kakao talk';
+export const imageType:ImageType = 'kakao talk';
 
 export const isShowReactImage:boolean = true;
 
 
-export const reactLibrary = {
+export const reactLibrary:ReactLibrary = {
     name:'React',
     author:'조던 워케(Jordan Walke)',
     writtenIn:'JavaScript',
