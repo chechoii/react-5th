@@ -12,6 +12,8 @@ function View() {
 
 export default View
 
+//
+
 function RespondingToEvents(){
 
     const [text, setText] = useState(''); // Hook
