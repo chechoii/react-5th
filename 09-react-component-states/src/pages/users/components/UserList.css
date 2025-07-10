@@ -1,0 +1,11 @@
+
+
+.userList{
+    list-style: none;
+    padding-inline: 0;
+
+    li{
+        margin-block-end:4px;
+        font-size:14px;
+    }
+}

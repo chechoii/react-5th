@@ -16,15 +16,17 @@ const render = () => {
 
   const {checked} = state; // 상태 의존 
   
-  // checkbox.checked = checked;
-  // if(checked){
-  //   button.removeAttribute('disabled');
-  //   button.textContent = '활성 상태'
-  // }else{
-  //   button.setAttribute('disabled','true');
-  //   button.textContent = '비활성 상태'
-  // }
-   
+  console.log('re-render!');
+  
+
+  checkbox.checked = checked;
+  if(checked){
+    button.removeAttribute('disabled');
+    button.textContent = '활성 상태'
+  }else{
+    button.setAttribute('disabled','true');
+    button.textContent = '비활성 상태'
+  }
 }
 
 /* 
@@ -32,17 +34,27 @@ state : 현재 상태
 setState : 상태를 업데이트하고 render()를 실행시켜주는 함수
 React의  const [count,setCount] = useState(0) 유사합니다.
 */
+
+/* typescript */
+declare global {
+  var update:(value:boolean) => void;
+}
+
+/* 
+setState('checked',value) 호출 시 render()함수도 함께 호출됨 -> UI 갱신
+globalThis.update 등록한 이유 : 브라우저 콘솔에서 update(true) 테스트할 수 있도록 ex.update(true) update(false)
+ */
+const update = (globalThis.update = (value) => {
+  setState('checked',value);
+})
+
 const [state,setState] = createState(data,render);
 
 console.log('초기 상태', state.checked);
 
-function update(){
-  const nextCheckedValue = !state.checked;
 
-  setState('checked',nextCheckedValue)
-}
 
-update()
+
 
 // globalThis.update = update;
 
@@ -53,6 +65,8 @@ const button = container.querySelector('button') as HTMLButtonElement;
 
 
 
-// checkbox.addEventListener('change',(e:Event)=>{
-  
-// })
+checkbox.addEventListener('change',(e:Event)=>{
+    const {checked} = e.target as HTMLInputElement;
+
+    update(checked)
+ })
