@@ -1,8 +1,9 @@
 import "@/styles/main.css"
-import "@/programming/imperative"
-// import "@/programming/declarative"
+// import "@/programming/imperative-step1"
+// import "@/programming/declarative-step1"
 import { createRoot } from "react-dom/client"
 import Form from "./programming/declarative";
+import "@/programming/imperative";
 
 
 

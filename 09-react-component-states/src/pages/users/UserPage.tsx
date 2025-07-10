@@ -1,10 +1,10 @@
 
 import {useState} from 'react';
 import userData from '@/data/users.json';
-import UserList from './users/components/UserList';
-import UserSearchBox from './users/components/UserSearchBox';
-import UserListCount from './users/components/UserListCount';
-import InstantSearch from './users/components/InstantSearch';
+import UserList from './components/UserList';
+import UserSearchBox from './components/UserSearchBox';
+import UserListCount from './components/UserListCount';
+import InstantSearch from './components/InstantSearch';
 
 
 

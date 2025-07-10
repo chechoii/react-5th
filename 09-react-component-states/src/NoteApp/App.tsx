@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { getNoteList } from "./api/getNote"
-import NoteListPage from "./NoteListPage"
+import NoteListPage from "@/pages/NoteListPage"
+
 
 
 function NoteApp() {

@@ -1,6 +1,8 @@
-import type { Note } from "./api/getNote"
+
+import type { Note } from '@/NoteApp/api/getNote';
 import '../pages/NoteListPage.css';
-import NoteList from "./components/NoteList";
+import NoteList from '@/NoteApp/components/NoteList';
+
 
 
 interface Props {

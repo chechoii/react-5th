@@ -1,8 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '@/styles/main.css';
+// import Playground from './Playground';
 import NoteApp from './NoteApp/App';
-// import Playground from './styles/Playground';
+
 
 
 
