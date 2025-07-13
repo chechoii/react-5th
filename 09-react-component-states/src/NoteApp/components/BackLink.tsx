@@ -12,7 +12,7 @@ function BackLink({onClick}:Props) {
 
     return (
     <a href="#back" className="BackLink" onClick={handleBack}>
-              <svg
+      <svg
         width="16px"
         height="16px"
         viewBox="0 0 24 24"

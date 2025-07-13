@@ -11,7 +11,7 @@ interface Props {
 
 function NoteCreatePage({newNoteId,onCreate,onChangeRoute}:Props) {
 
-    const handleBackLink = () => onChangeRoute(ROUTES.list)
+  const handleBackLink = () => onChangeRoute(ROUTES.list)
 
   return (
     <div className="NoteCreatePage">

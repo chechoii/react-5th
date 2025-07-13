@@ -1,23 +1,23 @@
 import { useState } from "react";
 
 function Counter() {
+  
+  const [number,setNumber] = useState(0);
 
-    let [number, setNumber] = useState(0);
+  const handleClick = () => {
 
-    const handleClick = () => {
-        setNumber(number + 1)
-        // setNumber(number + 1)
-        // setNumber(number + 1)
+    setNumber(number + 1)
+    // setNumber(number + 1)
+    // setNumber(number + 1)
 
-        alert(number);
-        
-    }
+    alert(number);
+  }
+
   return (
     <>
-        <h1>{number}</h1>
-        <button type="button" onClick={handleClick}> + </button>
+      <h1> { number } </h1>
+      <button type="button" onClick={handleClick}> + </button>
     </>
   )
 }
-
-export default Counter
+export default Counter;

@@ -15,8 +15,8 @@
       width: 3rem;
       font-size: 14px;
 
-      &+* {
-        flex: 1;
+      &+* { /* label 다음에 오는 요소 (input/textarea.select) */
+        flex: 1; /* 남은 공간 차지 */
         font-size: 14px;
         background: transparent;
         border: 0.5px solid #777;
@@ -59,7 +59,7 @@
       font-size: 14px;
       font-weight: 700;
 
-      &:hover:not(:disabled) {
+      &:hover:not(:disabled) { /* :not(:disabled) => enable */
         opacity: 1;
       }
     }

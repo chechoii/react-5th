@@ -3,21 +3,18 @@ import { convertSlug } from "@/utils/convertSlug"
 import '@/NoteApp/components/NoteList.css'
 import { ROUTES } from "../routes";
 
-
 interface Props {
   list:Note[]
    onChangeRoute: (nextRoute:string, pickNoteId?:number) => void;
 }
 
 function NoteList({list, onChangeRoute}:Props) {
-
-    // 핸들러 함수를 추가
+  // 핸들러 함수를 추가
   // 핸들러 바인딩
   // onChangeRoute(next, id) 실행
 
   const handleClick = (pickNoteId:number) => (e:React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-
     onChangeRoute(ROUTES.detail, pickNoteId)
   }
 

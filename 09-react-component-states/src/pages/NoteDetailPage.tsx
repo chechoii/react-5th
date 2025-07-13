@@ -6,25 +6,20 @@ import { convertSlug } from "@/utils/convertSlug";
 
 import './NoteDetailPage.css'
 
-
 interface Props {
     noteId:number | null;
     onChangeRoute: (nextRoute:string, pickNoteId?:number) => void;
 }
 
-
 function NoteDetailPage({noteId, onChangeRoute}:Props) {
-
 
     // noteId가 없으면 printError 컴포넌트를 화면에 렌더링
     if(!noteId) {
         return <PrintError>노트를 전달하지 못했습니다!</PrintError>
     }
 
-
     const note = getNoteItem(noteId);
     // console.log(note);
-
 
     // if(!note) return;
 

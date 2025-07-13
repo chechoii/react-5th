@@ -32,8 +32,8 @@ function NoteForm({ mode, newNoteId, onCreate, onBackLink }: Props) {
   const userId = useId();
 
 const handleUpdateFormData = (e:Form) =>{
-    const {name, value} = e.target
-    console.log(name,value);
+    const {name, value} = e.target;
+    // console.log(name,value);
 
     const nextFormData = {
         ...formData,
@@ -42,7 +42,7 @@ const handleUpdateFormData = (e:Form) =>{
 
     setFormData(nextFormData);
 
-    console.log(formData);
+    // console.log(formData);
     
     
 }
@@ -50,7 +50,7 @@ const handleUpdateFormData = (e:Form) =>{
   const handleCreateNote = () => {};
 
   return (
-    <form className="NoteForm">
+   <form className="NoteForm">
       <div className="formControl">
         <label htmlFor={titleId}>제목</label>
         <input

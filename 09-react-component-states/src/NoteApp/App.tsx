@@ -5,12 +5,7 @@ import { ROUTES } from "./routes";
 import NoteDetailPage from "@/pages/NoteDetailPage";
 import NoteCreatePage from "@/pages/NoteCreatePage";
 
-
-
-
-
 function NoteApp() {
-
 
     const [routeInfo, setRouteInfo] = useState<{
       route:string;

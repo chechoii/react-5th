@@ -1,5 +1,4 @@
 
-
 import notesData from '@/data/notes.json'
 import usersData from '@/data/users.json'
 
@@ -18,7 +17,6 @@ export function getNoteList() {
         return note;
     })
 }
-
 
 export function getNoteItem(noteId:number):Note | null {
     const notes = getNoteList();

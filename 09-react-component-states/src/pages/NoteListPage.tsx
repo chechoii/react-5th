@@ -4,20 +4,12 @@ import '../pages/NoteListPage.css';
 import NoteList from '@/NoteApp/components/NoteList';
 import { ROUTES } from '@/NoteApp/routes';
 
-
-
 interface Props {
     list:Note[]
     onChangeRoute: (nextRoute:string, pickNoteId?:number) => void;
 }
 
 function NoteListPage({list, onChangeRoute}:Props) {
-
-
-
-
-  
-
   const handleClick = (e:React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onChangeRoute(ROUTES.create)

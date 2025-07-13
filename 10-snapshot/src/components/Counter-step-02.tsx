@@ -9,8 +9,6 @@ function Counter() {
         setNumber(prev => prev + 1)
         setNumber(n => n + 1)
         setNumber(40)
-        
-        
     }
   return (
     <>
