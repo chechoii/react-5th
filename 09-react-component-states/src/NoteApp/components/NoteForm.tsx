@@ -1,25 +1,44 @@
+
 import { useId, useState } from "react";
 import type { Note } from "../api/getNote";
-import { getUserList } from "../api/getUser";
+import { getUser, getUserList } from "../api/getUser";
 import './NoteForm.css'
+import { convertHTMLToText, convertTextToHTMLString } from "@/utils/convertHTMLToText";
 
 
 interface Props {
-  mode: string;
-  newNoteId: number;
-  onCreate: (newNoteItem: Note) => void;
+  mode: 'create' | 'edit'
+  newNoteId?: number;
+  note?:Note;
+  onCreate?: (newNoteItem: Note) => void;
   onBackLink: () => void;
+  onDelete?:(willDeleteNoteId:number) => void;
+  onEdit?: (willEditNote:Note) => void;
 }
 
 const userList = getUserList();
 
-type Form = React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+type Form = React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>
 
+interface FormData{
+  title:string;
+  content:string;
+  userId:number;
+}
 
-function NoteForm({ mode, newNoteId, onCreate, onBackLink }: Props) {
+function NoteForm({ mode, newNoteId, onCreate, onBackLink, note, onEdit, onDelete }: Props) {
 
   
-  const [formData, setFormData] = useState(() => {
+  const [formData, setFormData] = useState<FormData>(() => {
+
+    if(mode === 'edit' && note){
+      return {
+        title:note.title,
+        content:convertHTMLToText(note.content),
+        userId:note.userId
+      }
+    }
+
     return {
       title: "",
       content: "",
@@ -31,32 +50,93 @@ function NoteForm({ mode, newNoteId, onCreate, onBackLink }: Props) {
   const contentId = useId();
   const userId = useId();
 
-const handleUpdateFormData = (e:Form) =>{
-    const {name, value} = e.target;
-    // console.log(name,value);
+  const handleUpdateFormData = (e:Form) => {
+    const { name, value } = e.target;
 
     const nextFormData = {
-        ...formData,
-        [name]:value
+      ...formData,
+      [name]:value
     }
 
     setFormData(nextFormData);
+    
+  }
 
-    // console.log(formData);
+  // console.log( formData );
+
+
+  const handleCreateNote = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // console.log('submit!');
+
+    const {title,content,userId} = formData;
+    // console.log(title,content,userId);
+
+    const newUserId = Number(userId);
+
+    const user = getUser(newUserId);
+
+    if(!user) return;
+    if(!newNoteId) return;
+
+    const newNote = {
+      id:newNoteId,
+      title:title.trim(),
+      content:convertTextToHTMLString(content),
+      userId:newUserId,
+      createdAt:'',
+      updatedAt:'',
+      expand:{
+        user:user
+      }
+    }
+
+    // console.log(newNote);
+    onCreate?.(newNote);
+    onBackLink();
     
+
     
+
+    // onCreate();
+  };
+
+  const handleEdit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // console.log('edit');
+    if(note && onEdit){
+      const willEditNote = {
+      ...note,
+      ...formData
+    }
+    onEdit?.(willEditNote)
+    onBackLink();
+    
+  }
 }
 
-  const handleCreateNote = () => {};
+  const handleDelete = () => {
+    // console.log('delete');
+    if(!note) return;
+    onDelete?.(note.id)
+    onBackLink();
+  }
+
+  const isCreateMode = mode.includes('create');
+
+  // console.log(isCreateMode);
+  
 
   return (
-   <form className="NoteForm">
+    <form className="NoteForm" onSubmit={isCreateMode ? handleCreateNote : handleEdit}>
       <div className="formControl">
         <label htmlFor={titleId}>제목</label>
         <input
           id={titleId}
           type="text"
           name="title"
+          value={formData.title}
           onChange={handleUpdateFormData}
         />
       </div>
@@ -65,6 +145,7 @@ const handleUpdateFormData = (e:Form) =>{
         <textarea
           id={contentId}
           name="content"
+          value={formData.content}
           onChange={handleUpdateFormData}
         />
       </div>
@@ -73,6 +154,7 @@ const handleUpdateFormData = (e:Form) =>{
         <select
           id={userId}
           name="userId"
+          value={formData.userId}
           onChange={handleUpdateFormData}
         >
         <option>작성자 선택</option>
@@ -85,12 +167,15 @@ const handleUpdateFormData = (e:Form) =>{
       </div>
 
       <div className="buttonGroup">
-        <button type="submit">추가</button>
-        <button type="reset">초기화</button>
+        <button type="submit">{isCreateMode ? '추가' : '수정'}</button>
+        {
+          isCreateMode ? 
+          (<button type="reset">초기화</button>) : 
+          (<button type="button" onClick={handleDelete}>삭제</button>) 
+        }
       </div>
-
-
     </form>
   );
 }
+
 export default NoteForm;
