@@ -38,8 +38,6 @@ function Effect() {
         fetchData();
     }) */
 
-    
-
     if(loading) return <p>loading...</p>
 
     console.log(users);

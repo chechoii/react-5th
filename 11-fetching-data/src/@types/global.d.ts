@@ -11,7 +11,6 @@ declare global {
   }
 }
 
-
 export interface User {
     id:       number;
     name:     string;

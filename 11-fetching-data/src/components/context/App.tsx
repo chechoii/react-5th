@@ -8,7 +8,6 @@ interface UserContextType {
 
 export const UserContext = createContext<UserContextType | null>(null);
 
-
 function App() {
 
     const [username, setUsername] = useState('최정은');
