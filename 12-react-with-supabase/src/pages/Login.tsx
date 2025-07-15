@@ -1,0 +1,124 @@
+import { useContext, useId, useState } from 'react'
+import S from './Login.module.css'
+import supabase from '@/supabase/supabase';
+import Swal from 'sweetalert2';
+import { RouterContext } from '@/components/router/RouterProvider';
+
+  /* 
+  1.email 상태 만들기
+  2. pw 상태 만들기
+  3. change 이벤트 바인딩
+  4. submit handler 사용하기
+  5. supabase 통신하기
+  6. console.log(로그인 성공) 출력하기
+  7. 로컬 스토리지 확인하기 ( 토큰 정보가 떨어졌는지 )
+  */
+
+function Login() {
+
+  const userId = useId();
+  const pwId = useId();
+
+  // 1. 2.
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const {setHistoryRoute} = useContext(RouterContext)!;
+
+  // 4.
+  const handleLogin = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    console.log(email, password);
+
+    const {data, error} = await supabase.auth.signInWithPassword({
+    email,
+    password:password,
+  })
+  // console.log(data, error);
+  if(error){
+    console.log(error.message);
+    setError(error.message);
+  } else{
+    // console.log('로그인 성공');
+    // alert('로그인에 성공했습니다! 메인 페이지로 이동합니다!');
+    Swal.fire({
+      text:'로그인에 성공했습니다! 메인 페이지로 이동합니다.',
+      icon:'success'
+    }).then(() => {
+      // console.log('이후 처리 동작');
+      history.pushState(null, '', '/');
+      setHistoryRoute('/');
+    })
+  }
+
+  
+  
+  }
+/*   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target;
+    if(name === 'email') setEmail(value);
+    if(name === 'password') setPassword(value);
+  };
+
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const {data, error} = await supabase.auth.signInWithPassword({
+    email:'admin@gmail.com',
+    password:'123456',
+  });
+
+  if(error) {
+    console.error('로그인 실패:', error.message);
+  } else {
+    console.log('로그인 성공:', data);
+    const token = data.session.access_token;
+    console.log('access_token:', token);
+  }
+  } */
+
+  return (
+    <div className={S.container}>
+      <div>
+        <form onSubmit={handleLogin}>
+          <h2>로그인</h2>
+          <hr />
+          <div>
+            <label htmlFor={userId}>이메일:</label>
+            <input 
+              type="text" 
+              name="email"
+              required
+              aria-required
+              id={userId}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor={pwId}>비밀번호:</label>
+            <input 
+              type="password" 
+              name="password"
+              required
+              aria-required
+              id={pwId}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">로그인</button>
+          {
+            error && <p style={{paddingTop:'1rem', color:'red'}}>{error}</p>
+          }
+          <hr />
+          <a href="">아직도 2.9cm 회원이 아니세요?</a>
+        </form>
+      </div>
+    </div>
+  )
+
+  }
+export default Login
+
+
+
