@@ -52,31 +52,7 @@ function Login() {
     })
   }
 
-  
-  
   }
-/*   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    if(name === 'email') setEmail(value);
-    if(name === 'password') setPassword(value);
-  };
-
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    const {data, error} = await supabase.auth.signInWithPassword({
-    email:'admin@gmail.com',
-    password:'123456',
-  });
-
-  if(error) {
-    console.error('로그인 실패:', error.message);
-  } else {
-    console.log('로그인 성공:', data);
-    const token = data.session.access_token;
-    console.log('access_token:', token);
-  }
-  } */
 
   return (
     <div className={S.container}>

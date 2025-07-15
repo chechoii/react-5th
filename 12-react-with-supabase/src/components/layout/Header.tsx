@@ -8,9 +8,8 @@ import Swal from 'sweetalert2';
 function Header() {
 
   const {user, isAuth, logout} = useAuth();
-  console.log(user, isAuth);
+  // console.log(user, isAuth);
   
-
   const visibleRoutes = routes.filter(({title})=>{
     if(isAuth) return title !== '로그인' && title !== '회원가입';
     else return title !== '회원가입'
