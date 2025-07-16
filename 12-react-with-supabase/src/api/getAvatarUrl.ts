@@ -1,8 +1,5 @@
 import supabase from "@/supabase/supabase";
 
-
-
-
 export async function getAvatarUrl(userId:string):Promise<string|null> {
 
     const {data:files, error:listError} = await supabase.storage
@@ -35,7 +32,5 @@ export async function getAvatarUrl(userId:string):Promise<string|null> {
 
     return data?.publicUrl || null
 
-
-    return ''
 
 }

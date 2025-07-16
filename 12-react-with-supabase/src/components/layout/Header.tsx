@@ -22,7 +22,6 @@ function Header() {
 
   // console.log(user.id);
   
-
   /* 
   getAvatarUrl(user.id)를 사용해서 화면에 이미지 랜더링
 
@@ -31,9 +30,7 @@ function Header() {
   3. getAvatarUrl -> return 값 확인
   4. 값 상태 관리 (useState)
   5. 상태 조건에 따라 랜더링
-
   -> 사용자가 프로필 이미지를 올리지 않았을 때 보이는 기본 이미지
-
   */
 
   useEffect(()=>{
@@ -43,7 +40,6 @@ function Header() {
       setAvatarUrl(url);
       setIsAvatarLoaded(true);
       // console.log(url);
-      
     }
     }
     fetchAvatarUrl()
@@ -51,8 +47,6 @@ function Header() {
 
   console.log(avatarUrl);
   
-
-
   return (
     <header className={S.header}>
         <h1>2.9cm</h1>
