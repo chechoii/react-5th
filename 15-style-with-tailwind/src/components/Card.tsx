@@ -85,6 +85,8 @@ function Card({type, title, company,  logoSrc, logoAlt = company, rate, classNam
           <p className="text-lg font-semibold text-state-900">{company}</p>
         </div>
 
+        <button className="bg-red-600">View</button>
+
         <button type="button" className="cursor-pointer rounded-full bg-slate-900 text-white px-4">View</button>
       </footer>
 
