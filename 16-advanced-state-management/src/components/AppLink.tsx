@@ -15,6 +15,8 @@ noreferrer
 
 
 import tw from "@/utils/tw";
+import { Helmet } from "@dr.pogodin/react-helmet";
+import { memo } from "react";
 
 interface Props {
     children:React.ReactNode;
@@ -24,19 +26,11 @@ interface Props {
 }
 
 
-export default function AppLink({children, href, isExternal, className, ...restProps}:Props) {
+function AppLink({children, href, isExternal, className, ...restProps}:Props) {
   
   const externalProps = isExternal ? {target:'_blank', rel:'noreferrer noopener'} : {};
   
     return (
-    <div>
-        {/* <title>나는 자식 컴포넌트</title>
-        <meta property='og:title' content='FT님과 함께 배우는 Zustand' />
-        <meta property='twitter:title' content='FT님과 함께 배우는 Zustand' />
-        <meta 
-        property="og:description"
-        content="ux/ui 디자이너를 꿈꾸는 자들이여 범쌤에게 오라!"
-        /> */}
 
         <a
         href={href}
@@ -46,6 +40,7 @@ export default function AppLink({children, href, isExternal, className, ...restP
         >
             {children}
         </a>
-    </div>
   )
 }
+
+export default memo(AppLink, () => true)
